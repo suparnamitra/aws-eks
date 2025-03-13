@@ -12,12 +12,12 @@ terraform {
   backend "s3" {
     bucket = "tcslabsfjbs"
     key    = "eks/terraform.tfstate"
-    region = "us-east-1"
+    region = "ap-south-1"
   }
 }
 # Variables
 variable "cluster_name" {
-  default     = "eks-vijay"
+  default     = "eks-suparna"
   description = "give a cluster name"
   type        = string
 }
@@ -29,7 +29,7 @@ variable "vpc_cidr" {
 
 variable "aws_region" {
   description = "region for resource creation"
-  default     = "us-east-1"
+  default     = "ap-south-1"
   type        = string
 }
 
@@ -47,16 +47,16 @@ variable "eks_node_disk_size" {
 variable "availability_zones" {
   description = "List of availability zones to use"
   type        = list(string)
-  default     = ["us-east-1a", "us-east-1b", "us-east-1c"]
+  default     = ["ap-south-1a", "ap-south-1b", "ap-south-1c"]
 }
 
 variable "private_subnet_cidrs" {
   description = "Map of AZ to CIDR for private subnets"
   type        = map(string)
   default = {
-    "us-east-1a" = "192.168.0.0/20"
-    "us-east-1b" = "192.168.16.0/20"
-    "us-east-1c" = "192.168.32.0/20"
+    "ap-south-1a" = "192.168.0.0/20"
+    "ap-south-1b" = "192.168.16.0/20"
+    "ap-south-1c" = "192.168.32.0/20"
   }
 }
 
@@ -64,9 +64,9 @@ variable "public_subnet_cidrs" {
   description = "Map of AZ to CIDR for public subnets"
   type        = map(string)
   default = {
-    "us-east-1a" = "192.168.48.0/20"
-    "us-east-1b" = "192.168.64.0/20"
-    "us-east-1c" = "192.168.80.0/20"
+    "ap-south-1a" = "192.168.48.0/20"
+    "ap-south-1b" = "192.168.64.0/20"
+    "ap-south-1c" = "192.168.80.0/20"
   }
 }
 
