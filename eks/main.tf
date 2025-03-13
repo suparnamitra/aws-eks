@@ -10,7 +10,7 @@ terraform {
     }
   }
   backend "s3" {
-    bucket = "suparna"
+    bucket = "bucket-sc"
     key    = "eks/terraform.tfstate"
     region = "ap-south-1"
   }
