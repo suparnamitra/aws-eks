@@ -23,7 +23,7 @@ jobs:
         role-to-assume: arn:aws:iam::430118834478:role/gh-actions-role-sc
         aws-region: "ap-south-1"
     - name: get eks credential 
-      run: aws eks update-kubeconfig --name eks-prod --region ap-south-1 
+      run: aws eks update-kubeconfig --name eks-suparna --region ap-south-1 
     - name: kubectl command
       run: |
         helm install arc \
