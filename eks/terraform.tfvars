@@ -19,7 +19,7 @@ public_subnet_cidrs = {
 # EKS cluster configuration
 eks_node_size      = "t3.medium" # Size of the EKS node pool instances
 eks_node_disk_size = 40          # EKS node disk size in GB
-cluster_name       = "eks-prod"
+cluster_name       = "eks-suparna"
 
 # Fargate configuration
 fargate_namespaces = ["fargate-system", "default", "arc-runners"]
