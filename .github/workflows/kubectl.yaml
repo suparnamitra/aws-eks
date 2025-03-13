@@ -26,11 +26,11 @@ jobs:
       run: aws eks update-kubeconfig --name eks-suparna --region ap-south-1 
     - name: kubectl command
       run: |
-        helm upgrade arc \
+        helm upgrade --install arc \
          --namespace arc-systems \
          --create-namespace \
          oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set-controller
-        helm upgrade arc-runner-set \
+        helm upgrade --install arc-runner-set \
           --namespace arc-runners \
           --create-namespace \
           --set githubConfigUrl="https://github.com/suparnamitra/aws-eks" \
