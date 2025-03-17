@@ -23,6 +23,7 @@ jobs:
       run: aws eks update-kubeconfig --name eks-prod --region us-east-1 
     - name: deploying elasticsearch
       run: |
+        kubectl patch storageclass gp2 -p '{"metadata": {"annotations": {"storageclass.kubernetes.io/is-default-class": "true"}}}'
         helm upgrade --install elasticsearch elasticsearch \
         --set=replicas=1,minimumMasterNodes=1,resources.requests.cpu=100m,resources.requests.memory=1Gi,volumeClaimTemplate.resources.requests.storage=5Gi,elasticsearch.password='redhat123' \
         --repo=https://helm.elastic.co -n logging --create-namespace
