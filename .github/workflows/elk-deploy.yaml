@@ -1,0 +1,28 @@
+name: ELK deployment
+
+on: 
+  workflow_dispatch:
+ 
+permissions:
+      id-token: write   
+      contents: read    
+jobs:
+  elk-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: configure aws credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        role-to-assume: arn:aws:iam::430118834478:role/gh-actions-role
+        aws-region: "us-east-1"
+    - name: get eks credential 
+      run: aws eks update-kubeconfig --name eks-prod --region us-east-1 
+    - name: deploying elasticsearch
+      run: |
+        helm upgrade --install elasticsearch elasticsearch \
+        --set=replicas=1,minimumMasterNodes=1,resources.requests.cpu=100m,resources.requests.memory=1Gi,volumeClaimTemplate.resources.requests.storage=5Gi,elasticsearch.password='redhat123' \
+        --repo=https://helm.elastic.co -n logging --create-namespace
