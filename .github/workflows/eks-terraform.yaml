@@ -6,9 +6,11 @@ on:
       destroy:
         description: 'Destroy infrastructure'
         required: true
-        default: 'false'
+        default: false
         type: boolean
-
+env:
+  aws_gh_role: "arn:aws:iam::430118834478:role/gh-actions-role"
+  aws_region: "us-east-1" 
 permissions:
       id-token: write   
       contents: read    
@@ -17,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./eks
+        working-directory: ./tf-aws-eks
 
     steps:
     - name: Checkout code
@@ -26,8 +28,8 @@ jobs:
     - name: configure aws credentials
       uses: aws-actions/configure-aws-credentials@v4
       with:
-        role-to-assume: arn:aws:iam::430118834478:role/gh-actions-role
-        aws-region: "us-east-1"
+        role-to-assume: ${{ env.aws_gh_role }}
+        aws-region: ${{ env.aws_region }}
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -48,19 +50,4 @@ jobs:
         else
           echo "Applying infrastructure..."
           terraform apply -auto-approve
-          sleep 15
-          
-          # Configure kubectl with cluster credentials
-          echo "Configuring kubectl..."
-          eval "$(terraform output -raw kubectl_config_command)"
-          
-          # Apply the aws-auth ConfigMap using the output command
-          echo "Applying aws-auth ConfigMap..."
-          eval "$(terraform output -raw apply_auth_config_cmd)"
-          
-          # Verify the ConfigMap was applied
-          echo "Verifying aws-auth ConfigMap..."
-          kubectl get configmap aws-auth -n kube-system -o yaml
-          
-          echo "EKS cluster deployment complete!"
         fi

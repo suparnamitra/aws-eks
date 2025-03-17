@@ -9,6 +9,9 @@ metadata:
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-type: "nlb"  # Specify NLB
     service.beta.kubernetes.io/aws-load-balancer-internal: "false"  # Public Load Balancer
+    service.beta.kubernetes.io/aws-load-balancer-subnets: "subnet-0324d1bfb5d79a8fa,subnet-09eb3e0b450279e70,subnet-00b342ff023c4fb4f" # Public subnets only
+    service.beta.kubernetes.io/aws-load-balancer-additional-resource-tags: "Environment=dev,Project=elastic"
+    service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
 spec:
   ports:
   - name: http
