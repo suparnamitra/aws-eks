@@ -24,7 +24,7 @@ module "vpc" {
   }
 
   public_subnet_tags = {
-    "kubernetes.io/cluster/my-eks-cluster" = "shared"
+    "kubernetes.io/cluster/eks-suparna" = "shared"
     "kubernetes.io/role/elb" = 1
   }
 

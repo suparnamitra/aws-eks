@@ -9,8 +9,8 @@ on:
         default: false
         type: boolean
 env:
-  aws_gh_role: "arn:aws:iam::430118834478:role/gh-actions-role"
-  aws_region: "us-east-1" 
+  aws_gh_role: "arn:aws:iam::430118834478:role/gh-actions-role-sc"
+  aws_region: "ap-south-1" 
 permissions:
       id-token: write   
       contents: read    

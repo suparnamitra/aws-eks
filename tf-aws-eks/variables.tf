@@ -1,7 +1,7 @@
 variable "aws_region" {
     description = "The region where the infrastructure should be deployed to"
     type = string
-    default = "us-east-1"
+    default = "ap-south-1"
 }
 
 variable "aws_account_id" {
@@ -41,7 +41,7 @@ variable "instance_type" {
 }
 variable "eks_name" {
   description = "eks cluster name"
-  default = "eks-dev"
+  default = "eks-suparna"
   type = string
 }
 variable "cluster_version" {
@@ -66,8 +66,7 @@ variable "eks_admin_arns" {
   description = "List of IAM user/role ARNs that will have admin access to the EKS cluster"
   type        = list(string)
   default     = [
-    "arn:aws:iam::430118834478:user/eks16",
-    "arn:aws:iam::430118834478:user/eks17",
-    "arn:aws:iam::430118834478:role/gh-actions"
+    "arn:aws:iam::430118834478:user/eks3",
+    "arn:aws:iam::430118834478:role/gh-actions-role-sc"
   ]
 }
