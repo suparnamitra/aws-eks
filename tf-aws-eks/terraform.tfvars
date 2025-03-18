@@ -24,5 +24,5 @@ tags = {
 eks_admin_arns = [
   "arn:aws:iam::430118834478:user/eks16",
   "arn:aws:iam::430118834478:user/eks17",
-  "arn:aws:iam::430118834478:role/gh-actions"
+  "arn:aws:iam::430118834478:role/gh-action-role"
 ]
